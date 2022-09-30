@@ -1,36 +1,26 @@
-// import {Builder, By, Capabilities, until, WebDriver, WebElement} from 'selenium-webdriver'
-
-require('./basePage')
 import {By} from 'selenium-webdriver'
-
-const chromedriver = require('chromedriver')
-
 import {BasePage} from './basePage'
+// import { id } from './jest.config'
 
 
 export class Clicker extends BasePage {
 //Locators Here
+
+englishBtn: By = By.xpath("//div[@id='langSelect-EN']")
+cookie: By = By.id("bigCookie")
+legacyBtn: By = By.xpath("//div[text()='Legacy']")
+buyCursorBtn: By = By.xpath("//div[text()='Cursor']")
+
+
 constructor() {
 super({url: 'https://orteil.dashnet.org/cookieclicker/'})
 }
 //methods
+
+async repeatClick(num, clickItem) {
+    for (let i = 0; i < num; i++){
+        await this.click(clickItem)
+    }
 }
 
-
-// interface Options {
-//     driver?: WebDriver;
-//     url?: string;
-// }
-
-// export class miniPageObjects {
-//     driver: WebDriver
-//     url: string
-
-//     constructor(options?: Options) {
-//         if(options && options.driver) this.driver = options.driver
-//         else
-//         this.driver = new Builder().withCapabilities(Capabilities.chrome()).build()
-//         if(options && options.url) this.url = options.url
-//     }
-
-// }
+}
