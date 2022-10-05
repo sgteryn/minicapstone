@@ -7,9 +7,10 @@ export class Clicker extends BasePage {
 //Locators Here
 
 englishBtn: By = By.xpath("//div[@id='langSelect-EN']")
-cookie: By = By.xpath("//button[@id='bigCookie']")
+cookie: By = By.id("bigCookie")
 legacyBtn: By = By.xpath("//div[text()='Legacy']")
 buyCursorBtn: By = By.xpath("//div[text()='Cursor']")
+ascendBtn: By = By.xpath("//*[@id='ascendBG']")
 
 
 constructor() {

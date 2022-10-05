@@ -8,9 +8,12 @@ test('Click the cookie to make cookies', async () => {
 
     await clicker.navigate('https://orteil.dashnet.org/cookieclicker/')
 
-    await clicker.click(By.xpath("//div[@id='langSelect-EN']")) 
+    await clicker.click(clicker.englishBtn)
+    
 
-    await clicker.driver.wait(until.elementLocated(By.id("bigCookie"))).click()
+ 
+    await clicker.repeatClick(15, (clicker.cookie))
+
 
     await clicker.click(By.xpath("//*[@id='statsButton']"))
 
@@ -20,16 +23,15 @@ test('Click the cookie to make cookies', async () => {
     
     let cookiesInBank = await clicker.driver.findElement(By.xpath("//*[@id='statsGeneral']//child::div[1]")).getText()
     
-    expect(cookiesInBank).toContain('1')
+    expect(cookiesInBank).toContain("15")
 
 })
 
 test('Purchase cursor', async ()=> {
-    // await clicker.navigate('https://orteil.dashnet.org/cookieclicker/')
     
-    // await clicker.repeatClick(15, (driver.findElement(By.xpath("//button[@id='bigCookie']"))))
+                   
 
-    await clicker.driver.findElement(By.xpath("//div[text()='Cursor']")).click()
+    await clicker.driver.findElement(clicker.buyCursorBtn).click()
 
     let clickersPurchased = await clicker.driver.findElement(By.xpath("//div[@id='productOwned0']")).getText()
 
@@ -39,30 +41,23 @@ test('Purchase cursor', async ()=> {
 
 
 test('Legacy button functionality', async () => {
-    // await clicker.navigate('https://orteil.dashnet.org/cookieclicker/')
+   
 
-    // await clicker.click(By.xpath("//div[@id='langSelect-EN']")) 
-
-    await clicker.click((By.xpath("//*[@id='legacyButton']"))); 
-    clicker.driver.wait(until.stalenessOf(clicker.driver.wait(until.elementLocated(By.xpath("//*[@id='legacyButton']")))));
+    await clicker.click(clicker.legacyBtn); 
+    clicker.driver.wait(until.stalenessOf(clicker.driver.wait(until.elementLocated(clicker.legacyBtn))));
     
 
-    let legacyBtnWorks= clicker.driver.wait(until.elementLocated(By.xpath("//*[@id='legacyButton']")))
+    let legacyBtnWorks= clicker.driver.wait(until.elementLocated(clicker.legacyBtn))
 
     expect(legacyBtnWorks).toBeTruthy
     
 })
 
 test('Ascend button present', async () => {
-    // await clicker.navigate('https://orteil.dashnet.org/cookieclicker/')
+   
+    await clicker.driver.findElement(clicker.ascendBtn)
 
-    // await clicker.click(By.xpath("//div[@id='langSelect-EN']")) 
-
-    // await clicker.driver.wait(until.elementLocated(By.xpath("//*[@id='legacyButton']"))).click()
-
-    await clicker.driver.findElement(By.xpath("//*[@id='ascendBG']"))
-
-    let AscendButtonPresent = clicker.driver.findElement(By.xpath("//*[@id='ascendBG']"))
+    let AscendButtonPresent = clicker.driver.findElement(clicker.ascendBtn)
 
     expect(AscendButtonPresent).toBeTruthy()
 })
